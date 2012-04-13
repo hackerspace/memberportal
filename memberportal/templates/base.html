@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='initial-scale=1.0, user-scalable=no' name='viewport'>
+    <title>{% block page_title %}Main{% endblock %} | Infra</title>
+    <link href='{{ MEDIA_URL}}css/main.css' rel='stylesheet'>
+    <link href='{{ MEDIA_URL}}css/bootstrap.min.css' rel='stylesheet'>
+    <link href='{{ MEDIA_URL}}favicon.ico' rel='shortcut icon' type='image/x-icon'>
+    <script src='{{ MEDIA_URL}}js/jquery-1.7.2.min.js'></script>
+    <script src='{{ MEDIA_URL}}js/bootstrap.min.js'></script>
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body>
+    <div id='overview'></div>
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <h3>
+            <a class='brand' href='http://base48.cz'>
+              <i class='icon-random'></i>
+              base48
+            </a>
+          </h3>
+          <ul class='nav'>
+            <li>
+              <a href='#about-us'>Overview</a>
+            </li>
+            <li>
+              <a href='#place'>Place</a>
+            </li>
+            <li>
+              <a href='#contacts'>Contacts</a>
+            </li>
+            <li>
+              <a href='#legal'>Legal</a>
+            </li>
+            <li>
+              <a href='#membership'>Membership</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class='container'>
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+</html>

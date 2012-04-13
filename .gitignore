@@ -1,0 +1,4 @@
+*.pyc
+*.sqlite
+memberportal/static/*
+memberportal/localsettings.py
