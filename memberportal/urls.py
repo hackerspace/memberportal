@@ -10,6 +10,8 @@ urlpatterns += patterns('',
     # url(r'^$', 'fu.views.home', name='home'),
     # url(r'^{{ project_name }}/', include('{{ project_name}}.foo.urls')),
     (r'^accounts/', include('registration.backends.default.urls')),
+    (r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    (r'^accounts/logout/$', 'django.contrib.auth.views.logout'),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
