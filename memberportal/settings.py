@@ -102,6 +102,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'bootstrap_toolkit',
     'registration',
+    'baseprofile',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 1
