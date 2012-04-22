@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.http import HttpResponseRedirect
 from django.contrib import admin
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
@@ -19,4 +20,6 @@ urlpatterns += patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+    url(r'^$', lambda _: HttpResponseRedirect('/accounts/profile/')),
 )
