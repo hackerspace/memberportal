@@ -1,3 +1,4 @@
+{% load url from future %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,14 +17,27 @@
       <div class='navbar-inner'>
         <div class='container'>
           <h3>
-            <a class='brand' href='/'>
+            <a class='brand' href='{% url 'auth_profile' %}'>
               <i class='icon-random'></i>
               base48
             </a>
           </h3>
           <ul class='nav'>
-            <li>
-              <a href='#login'>Login</a>
+              {% if user.is_authenticated %}
+              <li>
+                <a href='{% url 'auth_logout' %}'>Logout</a>
+              </li><li>
+                <a href='{% url 'auth_password_change' %}'>Change password</a>
+              </li>
+              {% else %}
+              <li>
+                <a href='{% url 'auth_login' %}'>Login</a>
+              </li><li>
+                <a href='{% url 'auth_password_reset' %}'>Reset password</a>
+              </li><li>
+                <a href='{% url 'registration_register' %}'>Registration</a>
+              </li>
+              {% endif %}
             </li>
           </ul>
         </div>
