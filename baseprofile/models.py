@@ -28,5 +28,6 @@ class BaseProfile(models.Model):
         verbose_name = _('Member of the revision committee'))
 
     payments_id = models.PositiveSmallIntegerField(
+        default = 0,
         verbose_name = _('ID used for payments'),
         help_text = _('Variable symbol'))
