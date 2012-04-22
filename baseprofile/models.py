@@ -33,6 +33,9 @@ class BaseProfile(models.Model):
         verbose_name = _('ID used for payments'),
         help_text = _('Variable symbol'))
 
+    def __unicode__(self):
+        return '%s\'s profile' % self.user
+
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         BaseProfile.objects.create(user=instance)
