@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from django.db.models.signals import post_save
 
 class BaseProfile(models.Model):
     user = models.OneToOneField(User)
@@ -31,3 +32,9 @@ class BaseProfile(models.Model):
         default = 0,
         verbose_name = _('ID used for payments'),
         help_text = _('Variable symbol'))
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        BaseProfile.objects.create(user=instance)
+
+post_save.connect(create_user_profile, sender=User)
