@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Your profile{% endblock %}
+
+{% block content %}
+  {% with user.get_profile as p %}
+    <h2>Your profile</h2>
+    <table class="table table-striped table-bordered">
+      <tr>
+        <td>
+          Full name
+        </td><td>
+          {{ user.first_name }} {{ user.last_name }}
+        </td>
+      </tr><tr>
+        <td>
+          Email
+        </td><td>
+          {{ user.email }}
+        </td>
+      </tr><tr>
+        <td>
+          Alt nick
+        </td><td>
+          {{ p.alt_nick }}
+        </td>
+      </tr><tr>
+        <td>
+          Phone
+        </td><td>
+          {{ p.phone }}
+        </td>
+      </tr><tr>
+        <td>
+          Accepted as a member
+        </td><td>
+          {% if p.accepted %}
+            <i class='icon-ok'></i>
+          {% else %}
+            <i class='icon-remove'></i>
+          {% endif %}
+        </td>
+      </tr><tr>
+        <td>
+          Member of the council
+        </td><td>
+          {% if p.council %}
+            <i class='icon-ok'></i>
+          {% else %}
+            <i class='icon-remove'></i>
+          {% endif %}
+
+        </td>
+      </tr><tr>
+        <td>
+          Member of the revision committee
+        </td><td>
+          {% if p.revision %}
+            <i class='icon-ok'></i>
+          {% else %}
+            <i class='icon-remove'></i>
+          {% endif %}
+        </td>
+      </tr><tr>
+        <td>
+          ID for payments
+        </td><td>
+          {{ p.payments_id }}
+        </td>
+      </tr>
+    </table>
+  {% endwith %}
+{% endblock %}
