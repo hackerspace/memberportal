@@ -106,6 +106,7 @@ INSTALLED_APPS = (
 )
 
 ACCOUNT_ACTIVATION_DAYS = 1
+AUTH_PROFILE_MODULE = 'baseprofile.BaseProfile'
 
 LOGGING = {
     'version': 1,
