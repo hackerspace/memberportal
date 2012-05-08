@@ -4,8 +4,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class SeleniumTests(LiveServerTestCase):
     timeout = 2
-    fixtures = ['unprivileged-user.json']
-
     def get_url(self, url):
         self.d.get('%s%s' % (self.live_server_url, url))
 
@@ -23,6 +21,9 @@ class SeleniumTests(LiveServerTestCase):
     def tearDownClass(cls):
         super(SeleniumTests, cls).tearDownClass()
         cls.d.quit()
+
+class LoginTests(SeleniumTests):
+    fixtures = ['unprivileged-user.json']
 
     def test_login_both_empty(self):
         self.get_url('/accounts/login/')
