@@ -30,6 +30,7 @@ class BaseProfile(models.Model):
 
     payments_id = models.PositiveSmallIntegerField(
         default = 0,
+        unique = True,
         verbose_name = _('ID used for payments'),
         help_text = _('Variable symbol'))
 
@@ -38,6 +39,11 @@ class BaseProfile(models.Model):
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        BaseProfile.objects.create(user=instance)
+        pids = BaseProfile.objects.all().values_list('payments_id')
+        obj = BaseProfile(user=instance)
+        if pids:
+            next_id = sorted(pids)[-1][0]
+            obj.payments_id = next_id + 1
+        obj.save()
 
 post_save.connect(create_user_profile, sender=User)
