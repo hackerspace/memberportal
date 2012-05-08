@@ -46,6 +46,14 @@
             <i class='icon-remove'></i>
           {% endif %}
         </td>
+      {% if p.accepted %}
+        </tr><tr>
+          <td>
+            Member since
+          </td><td>
+            {{ user.date_joined|date:"F Y" }}
+          </td>
+      {% endif %}
       </tr><tr>
         <td>
           Member of the council
