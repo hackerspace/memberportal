@@ -103,6 +103,7 @@ INSTALLED_APPS = (
     'bootstrap_toolkit',
     'registration',
     'baseprofile',
+    'payments',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 1
