@@ -84,60 +84,62 @@
         </td>
       </tr>
     </table>
-    <table class="table table-striped table-bordered">
-    {% for year in user.payment_set.all|cal_generator %}
-      <tr>
-        <td>
-          {{ year }}
-        </td>
-        {% for month in year.months %}
-          <td>
-            <span class='label
-            {% if month in year.months_ok %}
-            label-success
-            {% endif %}
-            {% if month in year.months_na %}
-            label-info
-            {% endif %}
-            {% if month in year.months_er %}
-            label-important
-            {% endif %}
-            '>{{ month }}</span>
-          </td>
-        {% endfor %}
-      </tr>
-    {% endfor %}
-    </table>
-    <h2>Your payments</h2>
-    <table class="table table-striped table-bordered">
-      {% for payment in user.payment_set.all %}
+    {% if user.payment_set.all %}
+      <table class="table table-striped table-bordered">
+      {% for year in user.payment_set.all|cal_generator %}
         <tr>
           <td>
-            {{ payment.date }}
+            {{ year }}
           </td>
-          <td>
-            {{ payment.amount }}
-          </td>
-          <td>
-            {% if not payment.parse %}
-              <span class="label label-important">
-                Incorrect format
-              </span>
-            {% else %}
-              <span class="label label-success">
-                Ok
-              </span>
-            {% endif %}
-          </td>
-          <td>
-            {% if not payment.parse %}
-              Your message: '{{ payment.message }}'
-            {% else %}
-              {{ payment.parse|format_payment }}
-            {% endif %}
-          </td>
+          {% for month in year.months %}
+            <td>
+              <span class='label
+              {% if month in year.months_ok %}
+              label-success
+              {% endif %}
+              {% if month in year.months_na %}
+              label-info
+              {% endif %}
+              {% if month in year.months_er %}
+              label-important
+              {% endif %}
+              '>{{ month }}</span>
+            </td>
+          {% endfor %}
         </tr>
       {% endfor %}
-    </table>
+      </table>
+      <h2>Your payments</h2>
+      <table class="table table-striped table-bordered">
+        {% for payment in user.payment_set.all %}
+          <tr>
+            <td>
+              {{ payment.date }}
+            </td>
+            <td>
+              {{ payment.amount }}
+            </td>
+            <td>
+              {% if not payment.parse %}
+                <span class="label label-important">
+                  Incorrect format
+                </span>
+              {% else %}
+                <span class="label label-success">
+                  Ok
+                </span>
+              {% endif %}
+            </td>
+            <td>
+              {% if not payment.parse %}
+                Your message: '{{ payment.message }}'
+              {% else %}
+                {{ payment.parse|format_payment }}
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
   {% endwith %}
 {% endblock %}
