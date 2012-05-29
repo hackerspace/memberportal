@@ -89,7 +89,7 @@ def parse_payment_message(sender, instance, created, raw, **kwargs):
 
     try:
         parsed = msg_parser.parse_message(instance.message)
-        if parsed == []:
+        if not parsed:
             instance.parsed = '%s/%s' % (instance.date.year,
                 instance.date.month)
         else:
