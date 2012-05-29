@@ -36,6 +36,9 @@ class YearInfo(object):
 def cal_generator(inp):
     years = set()
     monthly_data = set()
+    if not inp:
+        return []
+
     for payment in inp:
         for m in payment.formonths():
             years.add(m[0])
