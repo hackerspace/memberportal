@@ -36,4 +36,5 @@ class LoginTests(SeleniumTests):
         self.d.find_element_by_xpath('//button[@type="submit"]').click()
         body = self.wait_for_body()
         self.assertIn('Your profile', body.text)
+        self.assertNotIn('Administration', body.text)
 
