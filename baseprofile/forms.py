@@ -7,5 +7,5 @@ class ProfileForm(forms.ModelForm):
     first_name = forms.CharField(max_length=100)
     last_name = forms.CharField(max_length=100)
     class Meta:
-        fields = ('phone', 'alt_nick', )
+        fields = ('phone', 'xmpp', 'alt_nick', )
         model = BaseProfile

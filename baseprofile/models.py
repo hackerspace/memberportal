@@ -16,6 +16,11 @@ class BaseProfile(models.Model):
         blank = True,
         verbose_name = _('Phone number'))
 
+    xmpp  = models.CharField(
+        max_length = 200,
+        blank = True,
+        verbose_name = _('Jabber ID'))
+
     accepted = models.BooleanField(
         default = False,
         verbose_name = _('Accepted as a member'))
