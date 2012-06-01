@@ -1,7 +1,11 @@
+from datetime import date, timedelta
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
+
+from payments.common import has_paid_until
 
 class BaseProfile(models.Model):
     user = models.OneToOneField(User)
@@ -41,6 +45,11 @@ class BaseProfile(models.Model):
 
     def __unicode__(self):
         return '%s\'s profile' % self.user
+
+    def paid(self):
+        till = date.today() - timedelta(days=30)
+        return has_paid_until(self.user.payment_set.all, till.year,
+            till.month)
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
