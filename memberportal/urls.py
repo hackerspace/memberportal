@@ -1,10 +1,11 @@
 from django.conf import settings
 from django.contrib import admin
 from django.conf.urls import patterns, include, url
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.views.generic.simple import redirect_to
 from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 admin.autodiscover()
 
@@ -17,6 +18,10 @@ urlpatterns += patterns('',
     url(r'^accounts/profile/edit/$',
         'baseprofile.views.edit',
         name='auth_profile_edit'),
+
+    url(r'^accounts/members/list/$',
+        login_required(ListView.as_view(model=User,
+            template_name="member_list.html"))),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
