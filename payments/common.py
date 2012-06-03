@@ -10,9 +10,7 @@ class YearInfo(object):
 
         today = date.today()
         if self.year == today.year:
-            print self.months_er
             self.months_er -= set(range(today.month, 13))
-            print self.months_er
 
     def __unicode__(self):
         return u'%s' % self.year
