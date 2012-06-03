@@ -40,7 +40,7 @@ def edit(request, template_name='edit_profile.html',
 
 @login_required
 def overview(request, template_name='members.html'):
-    users = set(User.objects.all())
+    users = set(User.objects.filter(baseprofile__accepted=True))
     paying = set(filter(lambda x: x.get_profile().paid(), users))
     not_paying = users - paying
 
