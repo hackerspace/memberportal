@@ -38,7 +38,14 @@
                     <a href='{% url 'admin:index' %}'>Administration</a>
                   </li>
                 {% endif %}
-              {% else %}
+                {% with user.get_profile as p %}
+                  {% if p.accepted or user.is_superuser %}
+                    <li>
+                      <a href='{% url 'members' %}'>Member overview</a>
+                    </li>
+                  {% endif %}
+                {% endwith %}
+              {% else %} {# not logged in #}
               <li>
                 <a href='{% url 'auth_login' %}'>Login</a>
               </li><li>
