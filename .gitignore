@@ -3,3 +3,7 @@
 memberportal/static/*
 memberportal/localsettings.py
 *.log
+*.db
+*/db/*
+*_out_of_path*
+*store_fio*
