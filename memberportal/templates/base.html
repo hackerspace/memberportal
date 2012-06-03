@@ -43,6 +43,9 @@
                     <li>
                       <a href='{% url 'members' %}'>Member overview</a>
                     </li>
+                    <li>
+                      <a href='{% url 'members_list' %}'>Member list</a>
+                    </li>
                   {% endif %}
                 {% endwith %}
               {% else %} {# not logged in #}
