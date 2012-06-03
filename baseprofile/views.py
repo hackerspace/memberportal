@@ -44,9 +44,13 @@ def overview(request, template_name='members.html'):
     paying = set(filter(lambda x: x.get_profile().paid(), users))
     not_paying = users - paying
 
+
+    not_accepted = set(User.objects.filter(baseprofile__accepted=False))
+
     data = {
         'paying': paying,
         'not_paying': not_paying,
+        'not_accepted': not_accepted,
     }
 
     return render_to_response(template_name, data,
