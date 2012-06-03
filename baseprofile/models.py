@@ -48,7 +48,7 @@ class BaseProfile(models.Model):
 
     def paid(self):
         till = date.today() - timedelta(days=30)
-        return has_paid_until(self.user.payment_set.all, till.year,
+        return has_paid_until(self.user.payment_set.all(), till.year,
             till.month)
 
 def create_user_profile(sender, instance, created, **kwargs):
