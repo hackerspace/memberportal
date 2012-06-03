@@ -25,7 +25,8 @@ urlpatterns += patterns('',
 
     url(r'^accounts/members/list/$',
         login_required(ListView.as_view(model=User,
-            template_name="member_list.html"))),
+            template_name="member_list.html")),
+        name='members_list'),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
