@@ -19,6 +19,10 @@ urlpatterns += patterns('',
         'baseprofile.views.edit',
         name='auth_profile_edit'),
 
+    url(r'^accounts/members/$',
+        'baseprofile.views.overview',
+        name='members'),
+
     url(r'^accounts/members/list/$',
         login_required(ListView.as_view(model=User,
             template_name="member_list.html"))),
