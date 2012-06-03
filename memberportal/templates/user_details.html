@@ -1,0 +1,113 @@
+{% load payments_extras %}
+  {% with usr.get_profile as p %}
+    <table class="table table-striped table-bordered">
+      <tr>
+        <td>
+          Full name
+        </td><td>
+          {{ usr.first_name }} {{ usr.last_name }}
+        </td>
+      </tr><tr>
+        <td>
+          Email
+        </td><td>
+          {{ usr.email }}
+        </td>
+      </tr><tr>
+        <td>
+          Username
+        </td><td>
+          {{ usr }}
+        </td>
+      </tr><tr>
+        <td>
+          Alt nick
+        </td><td>
+          {{ p.alt_nick }}
+        </td>
+      </tr><tr>
+        <td>
+          Phone
+        </td><td>
+          {{ p.phone }}
+        </td>
+      </tr><tr>
+        <td>
+          JID
+        </td><td>
+          {{ p.xmpp }}
+        </td>
+      </tr><tr>
+        <td>
+          Accepted as a member
+        </td><td>
+          {% if p.accepted %}
+            <i class='icon-ok'></i>
+          {% else %}
+            <i class='icon-remove'></i>
+          {% endif %}
+        </td>
+      {% if p.accepted %}
+        </tr><tr>
+          <td>
+            Member since
+          </td><td>
+            {{ usr.date_joined|date:"F Y" }}
+          </td>
+      {% endif %}
+      </tr><tr>
+        <td>
+          Member of the council
+        </td><td>
+          {% if p.council %}
+            <i class='icon-ok'></i>
+          {% else %}
+            <i class='icon-remove'></i>
+          {% endif %}
+
+        </td>
+      </tr><tr>
+        <td>
+          Member of the revision committee
+        </td><td>
+          {% if p.revision %}
+            <i class='icon-ok'></i>
+          {% else %}
+            <i class='icon-remove'></i>
+          {% endif %}
+        </td>
+      </tr><tr>
+        <td>
+          ID for payments
+        </td><td>
+          {{ p.payments_id }}
+        </td>
+      </tr>
+    </table>
+    {% if usr.payment_set.all %}
+      <table class="table table-striped table-bordered">
+      {% for year in usr.payment_set.all|cal_generator %}
+        <tr>
+          <td>
+            {{ year }}
+          </td>
+          {% for month in year.months %}
+            <td>
+              <span class='label
+              {% if month in year.months_ok %}
+              label-success
+              {% endif %}
+              {% if month in year.months_na %}
+              label-info
+              {% endif %}
+              {% if month in year.months_er %}
+              label-important
+              {% endif %}
+              '>{{ month }}</span>
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+      </table>
+    {% endif %}
+  {% endwith %}

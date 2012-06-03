@@ -4,117 +4,11 @@
 {% block title %}Your profile{% endblock %}
 
 {% block content %}
-  {% with user.get_profile as p %}
     <h2>Your profile</h2>
-    <table class="table table-striped table-bordered">
-      <tr>
-        <td>
-          Full name
-        </td><td>
-          {{ user.first_name }} {{ user.last_name }}
-        </td>
-      </tr><tr>
-        <td>
-          Email
-        </td><td>
-          {{ user.email }}
-        </td>
-      </tr><tr>
-        <td>
-          Username
-        </td><td>
-          {{ user }}
-        </td>
-      </tr><tr>
-        <td>
-          Alt nick
-        </td><td>
-          {{ p.alt_nick }}
-        </td>
-      </tr><tr>
-        <td>
-          Phone
-        </td><td>
-          {{ p.phone }}
-        </td>
-      </tr><tr>
-        <td>
-          JID
-        </td><td>
-          {{ p.xmpp }}
-        </td>
-      </tr><tr>
-        <td>
-          Accepted as a member
-        </td><td>
-          {% if p.accepted %}
-            <i class='icon-ok'></i>
-          {% else %}
-            <i class='icon-remove'></i>
-          {% endif %}
-        </td>
-      {% if p.accepted %}
-        </tr><tr>
-          <td>
-            Member since
-          </td><td>
-            {{ user.date_joined|date:"F Y" }}
-          </td>
-      {% endif %}
-      </tr><tr>
-        <td>
-          Member of the council
-        </td><td>
-          {% if p.council %}
-            <i class='icon-ok'></i>
-          {% else %}
-            <i class='icon-remove'></i>
-          {% endif %}
-
-        </td>
-      </tr><tr>
-        <td>
-          Member of the revision committee
-        </td><td>
-          {% if p.revision %}
-            <i class='icon-ok'></i>
-          {% else %}
-            <i class='icon-remove'></i>
-          {% endif %}
-        </td>
-      </tr><tr>
-        <td>
-          ID for payments
-        </td><td>
-          {{ p.payments_id }}
-        </td>
-      </tr>
-    </table>
+    {% with user as usr %}
+      {% include "user_details.html" %}
+    {% endwith %}
     {% if user.payment_set.all %}
-      <table class="table table-striped table-bordered">
-      {% for year in user.payment_set.all|cal_generator %}
-        <tr>
-          <td>
-            {{ year }}
-          </td>
-          {% for month in year.months %}
-            <td>
-              <span class='label
-              {% if month in year.months_ok %}
-              label-success
-              {% endif %}
-              {% if month in year.months_na %}
-              label-info
-              {% endif %}
-              {% if month in year.months_er %}
-              label-important
-              {% endif %}
-              '>{{ month }}</span>
-            </td>
-          {% endfor %}
-        </tr>
-      {% endfor %}
-      </table>
       <h2>Your payments</h2>
       <table class="table table-striped table-bordered">
         {% for payment in user.payment_set.all %}
@@ -147,5 +41,4 @@
         {% endfor %}
       </table>
     {% endif %}
-  {% endwith %}
 {% endblock %}
