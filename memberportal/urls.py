@@ -11,7 +11,8 @@ admin.autodiscover()
 
 urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += patterns('',
-    (r'^accounts/', include('registration.backends.default.urls')),
+    (r'^accounts/', include('simple_captcha_backend.urls')),
+    url(r'^captcha/', include('captcha.urls')),
     url(r'^accounts/profile/$',
         login_required(TemplateView.as_view(template_name="profile.html")),
         name='auth_profile'),

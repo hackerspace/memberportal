@@ -104,10 +104,13 @@ INSTALLED_APPS = (
     'registration',
     'baseprofile',
     'payments',
+    'captcha',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 1
 AUTH_PROFILE_MODULE = 'baseprofile.BaseProfile'
+CAPTCHA_NOISE_FUNCTIONS = ()
+CAPTCHA_LETTER_ROTATION = None
 
 LOGGING = {
     'version': 1,

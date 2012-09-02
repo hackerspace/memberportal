@@ -8,3 +8,7 @@ hr, .clear { clear: both; }
   width: 40%;
 }
 
+img.captcha {
+  top: 15px;
+  position: relative;
+}
