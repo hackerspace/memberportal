@@ -37,7 +37,7 @@ TIME_ZONE = 'Europe/Prague'
 LANGUAGE_CODE = 'en'
 USE_I18N = True
 USE_L10N = True
-USE_TZ   = True
+USE_TZ   = False
 
 MEDIA_URL = '/memberportal/media/'
 MEDIA_ROOT = os.path.join(ROOT_PATH, 'media')
