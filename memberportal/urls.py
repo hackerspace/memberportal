@@ -30,6 +30,30 @@ urlpatterns += patterns('',
             template_name="member_list.html")),
         name='members_list'),
 
+    url(r'^accounts/members/list/accepted/$',
+        login_required(ListView.as_view(
+            queryset=User.objects.filter(baseprofile__status='AC'),
+            template_name="member_list.html")),
+        name='members_list_accepted'),
+
+    url(r'^accounts/members/list/rejected/$',
+        login_required(ListView.as_view(
+            queryset=User.objects.filter(baseprofile__status='RE'),
+            template_name="member_list.html")),
+        name='members_list_rejected'),
+
+    url(r'^accounts/members/list/awaiting/$',
+        login_required(ListView.as_view(
+            queryset=User.objects.filter(baseprofile__status='NA'),
+            template_name="member_list.html")),
+        name='members_list_awaiting'),
+
+    url(r'^accounts/members/list/ex/$',
+        login_required(ListView.as_view(
+            queryset=User.objects.filter(baseprofile__status='EX'),
+            template_name="member_list.html")),
+        name='members_list_ex'),
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
