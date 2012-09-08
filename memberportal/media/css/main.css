@@ -8,6 +8,10 @@ hr, .clear { clear: both; }
   width: 40%;
 }
 
+.overview-table td:last-child {
+  width: 40%;
+}
+
 img.captcha {
   top: 15px;
   position: relative;
