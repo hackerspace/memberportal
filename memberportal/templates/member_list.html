@@ -4,15 +4,9 @@
 {% block title %}Member list{% endblock %}
 
 {% block content %}
-  {% with user.get_profile as p %}
-    {% if p.accepted or user.is_superuser %}
-      {% for usr in object_list %}
-        <h2>{{ usr }}</h2>
-        {% include "user_details.html" %}
-      {% endfor %}
-    {% else %}
-      Not authorized
-    {% endif %}
-  {% endwith %}
+  {% for usr in object_list %}
+    <h2>{{ usr }}</h2>
+    {% include "user_details.html" %}
+  {% endfor %}
 {% endblock %}
 
