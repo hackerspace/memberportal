@@ -8,11 +8,20 @@ from django.db.models.signals import post_save
 from payments.common import has_paid_until
 
 MEMBERSHIP_STATES = (
-    ('NA', 'N/A'),
+    ('NA', 'Awaiting'),
     ('AC', 'Accepted'),
     ('RE', 'Rejected'),
     ('EX', 'Ex-member')
 )
+
+class MemberManager(models.Manager):
+    def __init__(self, status, *args, **kwargs):
+        self.status = status
+        super(MemberManager, self).__init__(*args, **kwargs)
+
+    def get_query_set(self):
+        return super(MemberManager, self).get_query_set().filter(
+            status=self.status)
 
 class BaseProfile(models.Model):
     user = models.OneToOneField(User)
@@ -31,10 +40,6 @@ class BaseProfile(models.Model):
         max_length = 200,
         blank = True,
         verbose_name = _('Jabber ID'))
-
-    accepted = models.BooleanField(
-        default = False,
-        verbose_name = _('Accepted as a member'))
 
     status = models.CharField(
         max_length = 2,
@@ -66,6 +71,15 @@ class BaseProfile(models.Model):
 
         return has_paid_until(users_payments, till.year,
             till.month)
+
+    def accepted(self):
+        return self.status == 'AC'
+
+    members  = MemberManager('AC')
+    awaiting = MemberManager('NA')
+    rejected = MemberManager('RE')
+    ex       = MemberManager('EX')
+
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

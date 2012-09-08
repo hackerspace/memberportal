@@ -39,13 +39,14 @@
         </td>
       </tr><tr>
         <td>
-          Accepted as a member
+          Membership status
         </td><td>
           {% if p.accepted %}
             <i class='icon-ok'></i>
           {% else %}
             <i class='icon-remove'></i>
           {% endif %}
+          {{ p.get_status_display }}
         </td>
       {% if p.accepted %}
         </tr><tr>

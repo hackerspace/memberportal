@@ -26,7 +26,7 @@ urlpatterns += patterns('',
 
     url(r'^accounts/members/list/$',
         login_required(ListView.as_view(
-            queryset=User.objects.filter(baseprofile__accepted=True),
+            queryset=User.objects.filter(baseprofile__status='AC'),
             template_name="member_list.html")),
         name='members_list'),
 

@@ -3,9 +3,9 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 
 from forms import ProfileForm
+from models import BaseProfile
 
 @login_required
 def edit(request, template_name='edit_profile.html',
@@ -40,17 +40,21 @@ def edit(request, template_name='edit_profile.html',
 
 @login_required
 def overview(request, template_name='members.html'):
-    users = set(User.objects.filter(baseprofile__accepted=True))
-    paying = set(filter(lambda x: x.get_profile().paid(), users))
-    not_paying = users - paying
+    members  = set(BaseProfile.members.all())
+    awaiting = BaseProfile.awaiting.all()
+    ex       = BaseProfile.ex.all()
+    rejected = BaseProfile.rejected.all()
 
-
-    not_accepted = set(User.objects.filter(baseprofile__accepted=False))
+    paying = set(filter(lambda x: x.paid(), members))
+    not_paying = members - paying
 
     data = {
         'paying': paying,
         'not_paying': not_paying,
-        'not_accepted': not_accepted,
+        'members': members,
+        'awaiting': awaiting,
+        'ex': ex,
+        'rejected': rejected,
     }
 
     return render_to_response(template_name, data,

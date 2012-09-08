@@ -7,6 +7,9 @@
     <h2>Summary</h2>
     <table class="table table-striped table-bordered">
       <tr>
+        <td> Number of members: </td>
+        <td> {{ members|length }} </td>
+      </tr><tr>
         <td> Number of paying members: </td>
         <td> {{ paying|length }} </td>
       </tr><tr>
@@ -14,7 +17,14 @@
         <td> {{ not_paying|length }} </td>
       </tr><tr>
         <td> Number of awaiting members: </td>
-        <td> {{ not_accepted|length }} </td>
+        <td> {{ awaiting|length }} </td>
+      </tr><tr>
+        <td> Number of rejected members: </td>
+        <td> {{ rejected|length }} </td>
+      </tr><tr>
+        <td> Number of ex members: </td>
+        <td> {{ ex|length }} </td>
       </tr>
+
     </table>
 {% endblock %}
