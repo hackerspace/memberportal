@@ -225,12 +225,12 @@
       "is_active": true, 
       "is_superuser": false, 
       "is_staff": false, 
-      "last_login": "2012-04-15T14:48:33.224Z", 
+      "last_login": "2012-04-15T14:48:33.224", 
       "groups": [], 
       "user_permissions": [], 
       "password": "pbkdf2_sha256$10000$2J2htZiV3MAE$nZ51wUpWsbQRcWWa4te5m0H9oVIQ7uZsVqq2JT60r+0=", 
       "email": "mail@example.org", 
-      "date_joined": "2012-04-15T14:48:33.224Z"
+      "date_joined": "2012-04-15T14:48:33.224"
     }
   }
 ]
