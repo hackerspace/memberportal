@@ -7,6 +7,13 @@ from django.db.models.signals import post_save
 
 from payments.common import has_paid_until
 
+MEMBERSHIP_STATES = (
+    ('NA', 'N/A'),
+    ('AC', 'Accepted'),
+    ('RE', 'Rejected'),
+    ('EX', 'Ex-member')
+)
+
 class BaseProfile(models.Model):
     user = models.OneToOneField(User)
 
@@ -28,6 +35,11 @@ class BaseProfile(models.Model):
     accepted = models.BooleanField(
         default = False,
         verbose_name = _('Accepted as a member'))
+
+    status = models.CharField(
+        max_length = 2,
+        default = 'NA',
+        choices=MEMBERSHIP_STATES)
 
     council = models.BooleanField(
         default = False,
