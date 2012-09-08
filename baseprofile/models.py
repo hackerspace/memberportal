@@ -75,6 +75,7 @@ class BaseProfile(models.Model):
     def accepted(self):
         return self.status == 'AC'
 
+    objects  = models.Manager()
     members  = MemberManager('AC')
     awaiting = MemberManager('NA')
     rejected = MemberManager('RE')
