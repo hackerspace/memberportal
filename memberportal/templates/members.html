@@ -26,4 +26,11 @@
         <td> <a href="{% url members_list_ex %}">{{ ex|length }}</a></td>
       </tr>
     </table>
+
+    <h3>Members with missing payments</h3>
+    <ul>
+    {% for user in not_paying %}
+      <li>{{ user }}</li>
+    {% endfor %}
+    </ul>
 {% endblock %}
