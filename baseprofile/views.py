@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 from forms import ProfileForm
 from models import BaseProfile
+from decorators import member_required
 
 @login_required
 def edit(request, template_name='edit_profile.html',
@@ -39,6 +40,7 @@ def edit(request, template_name='edit_profile.html',
             context_instance=RequestContext(request))
 
 @login_required
+@member_required
 def overview(request, template_name='members.html'):
     members  = set(BaseProfile.members.all())
     awaiting = BaseProfile.awaiting.all()
