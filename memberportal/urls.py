@@ -59,5 +59,6 @@ urlpatterns += patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
+    url(r'^accounts/$', redirect_to, {'url' : '/accounts/profile/'}),
     url(r'^$', redirect_to, {'url' : '/accounts/profile/'}),
 )
