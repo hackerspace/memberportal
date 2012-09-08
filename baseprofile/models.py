@@ -1,11 +1,9 @@
-from datetime import date, timedelta
-
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 
-from payments.common import has_paid_until
+from payments.common import no_missing_payments, missing_months
 
 MEMBERSHIP_STATES = (
     ('NA', 'Awaiting'),
@@ -64,13 +62,18 @@ class BaseProfile(models.Model):
         return '%s\'s profile' % self.user
 
     def paid(self):
-        till = date.today() - timedelta(days=30)
         users_payments = self.user.payment_set.all()
         if not users_payments:
             return False
 
-        return has_paid_until(users_payments, till.year,
-            till.month)
+        return no_missing_payments(users_payments)
+
+    def missing_payments(self):
+        users_payments = self.user.payment_set.all()
+        if not users_payments:
+            return []
+
+        return missing_months(users_payments)
 
     def accepted(self):
         return self.status == 'AC'

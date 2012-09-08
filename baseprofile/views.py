@@ -63,5 +63,9 @@ def overview(request, template_name='members.html'):
     for key, value in lists.items():
         data[key] = map(lambda x: x.user, value)
 
+    # enhance non paying users with info about how many months they are missing
+    data['not_paying'] = sorted(map(lambda x: (x, x.get_profile().missing_payments()),
+        data['not_paying']), key=lambda x: len(x[1]), reverse=True)
+
     return render_to_response(template_name, data,
         context_instance=RequestContext(request))

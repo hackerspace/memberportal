@@ -45,10 +45,20 @@ def payments_by_month(payments_list):
         out.append(yi)
     return out
 
-def has_paid_until(payments_list, year, month):
+def no_missing_payments(payments_list):
     plist = payments_by_month(payments_list)
     for year in plist:
          if year.missing():
              return False
 
     return True
+
+def missing_months(payments_list):
+    plist = payments_by_month(payments_list)
+    missing = []
+    for yi in plist:
+        if yi.missing():
+            for month in yi.months_er:
+                missing.append((yi.year, month))
+
+    return missing

@@ -28,9 +28,12 @@
   </table>
 
   <h3>Members with missing payments</h3>
-  <ul>
-  {% for user in not_paying %}
-    <li>{{ user }}</li>
-  {% endfor %}
-  </ul>
+  <table class="table table-striped table-bordered">
+    {% for usr, months in not_paying %}
+      <tr>
+        <td>{{ usr }}</td>
+        <td>{{ months|length }}</td>
+      </tr>
+    {% endfor %}
+  </table>
 {% endblock %}
