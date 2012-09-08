@@ -105,6 +105,7 @@ INSTALLED_APPS = (
     'baseprofile',
     'payments',
     'captcha',
+    'south',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 1
