@@ -48,7 +48,7 @@ def overview(request, template_name='members.html'):
     paying = set(filter(lambda x: x.paid(), members))
     not_paying = members - paying
 
-    data = {
+    lists = {
         'paying': paying,
         'not_paying': not_paying,
         'members': members,
@@ -56,6 +56,10 @@ def overview(request, template_name='members.html'):
         'ex': ex,
         'rejected': rejected,
     }
+
+    data = {}
+    for key, value in lists.items():
+        data[key] = map(lambda x: x.user, value)
 
     return render_to_response(template_name, data,
         context_instance=RequestContext(request))
