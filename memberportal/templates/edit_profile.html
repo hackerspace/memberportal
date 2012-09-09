@@ -9,6 +9,10 @@
 {% block content %}
   <form action="" method="post" class="form-horizontal">
     {% csrf_token %}
+    <div class="alert">
+      <strong>Warning!</strong> Details you provide here are visible for other members.
+      Do not add any personal details you want to keep private!
+    </div>
     {{ form|as_bootstrap }}
     <div class="form-actions">
       <button type="submit" class="btn btn-primary">Save</button>
