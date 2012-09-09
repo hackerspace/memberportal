@@ -16,3 +16,9 @@ img.captcha {
   top: 15px;
   position: relative;
 }
+
+@media (max-width: 979px) {
+  .nav {
+    clear: left;
+  }
+}
