@@ -42,7 +42,7 @@
                 {% with user.get_profile as p %}
                   {% if p.accepted or user.is_superuser %}
                     <li>
-                      <a href='{% url 'members' %}'>Member overview</a>
+                      <a href='{% url 'members' %}'>Members overview</a>
                     </li>
                     <li>
                       <a href='{% url 'members_list' %}'>Member list</a>
