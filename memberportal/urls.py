@@ -56,6 +56,10 @@ urlpatterns += patterns('',
             template_name="member_list.html"))),
         name='members_list_ex'),
 
+    url(r'^payments/$',
+        'payments.views.overview',
+        name='payments'),
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
