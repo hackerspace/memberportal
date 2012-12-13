@@ -28,31 +28,36 @@ urlpatterns += patterns('',
 
     url(r'^accounts/members/list/$',
         login_required(member_required(ListView.as_view(
-            queryset=User.objects.filter(baseprofile__status='AC'),
+            queryset=User.objects.filter(
+                baseprofile__status='AC').order_by('username'),
             template_name="member_list.html"))),
         name='members_list'),
 
     url(r'^accounts/members/list/accepted/$',
         login_required(member_required(ListView.as_view(
-            queryset=User.objects.filter(baseprofile__status='AC'),
+            queryset=User.objects.filter(
+                baseprofile__status='AC').order_by('username'),
             template_name="member_list.html"))),
         name='members_list_accepted'),
 
     url(r'^accounts/members/list/rejected/$',
         login_required(member_required(ListView.as_view(
-            queryset=User.objects.filter(baseprofile__status='RE'),
+            queryset=User.objects.filter(
+                baseprofile__status='RE').order_by('username'),
             template_name="member_list.html"))),
         name='members_list_rejected'),
 
     url(r'^accounts/members/list/awaiting/$',
         login_required(member_required(ListView.as_view(
-            queryset=User.objects.filter(baseprofile__status='NA'),
+            queryset=User.objects.filter(
+                baseprofile__status='NA').order_by('username'),
             template_name="member_list.html"))),
         name='members_list_awaiting'),
 
     url(r'^accounts/members/list/ex/$',
         login_required(member_required(ListView.as_view(
-            queryset=User.objects.filter(baseprofile__status='EX'),
+            queryset=User.objects.filter(
+                baseprofile__status='EX').order_by('username'),
             template_name="member_list.html"))),
         name='members_list_ex'),
 
